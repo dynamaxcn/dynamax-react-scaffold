@@ -35,7 +35,7 @@ export function encodeURI(uri) {
  * @returns {string}
  */
 export function decodeURI(uri) {
-    return window.decodeURI(uri);
+    return window.decodeURI(uri)
 }
 
 /**
@@ -45,11 +45,11 @@ export function decodeURI(uri) {
  */
 export function isJsonString(str) {
     try {
-        JSON.parse(str);
+        JSON.parse(str)
     } catch (e) {
-        return false;
+        return false
     }
-    return true;
+    return true
 }
 
 /**
@@ -59,17 +59,17 @@ export function isJsonString(str) {
  * @returns {Array}
  */
 export function arrayDiff(array1, array2) {
-    let o = {};//转成hash可以减少运算量，数据量越大，优势越明显。
+    let o = {}//转成hash可以减少运算量，数据量越大，优势越明显。
     for (let i = 0, len = array2.length; i < len; i++) {
-        o[array2[i]] = true;
+        o[array2[i]] = true
     }
-    let result = [];
+    let result = []
     for (let i = 0, len = array1.length; i < len; i++) {
-        let v = array1[i];
-        if (o[v]) continue;
-        result.push(v);
+        let v = array1[i]
+        if (o[v]) continue
+        result.push(v)
     }
-    return result;
+    return result
 }
 
 /**
@@ -81,7 +81,7 @@ export function arrayDiff(array1, array2) {
 export function getOneDiffFromArrays(arrRecommend, arrDisplayed) {
     for (let rv of arrRecommend) {
         if (!arrDisplayed.includes(rv)) {
-            return rv;
+            return rv
         }
     }
 }
@@ -94,7 +94,7 @@ export function getOneDiffFromArrays(arrRecommend, arrDisplayed) {
  * @returns {number}
  */
 export function accAdd(arg1, arg2) {
-    let r1, r2, m;
+    let r1, r2, m
     try {
         r1 = arg1.toString().split(".")[1].length
     } catch (e) {
@@ -105,8 +105,8 @@ export function accAdd(arg1, arg2) {
     } catch (e) {
         r2 = 0
     }
-    m = Math.pow(10, Math.max(r1, r2));
-    return (arg1 * m + arg2 * m) / m;
+    m = Math.pow(10, Math.max(r1, r2))
+    return (arg1 * m + arg2 * m) / m
 }
 
 /**
@@ -115,12 +115,12 @@ export function accAdd(arg1, arg2) {
  */
 export function getObjectClass(obj) {
     if (obj && obj.constructor && obj.constructor.toString) {
-        var arr = obj.constructor.toString().match(/function\s*(\w+)/);
+        var arr = obj.constructor.toString().match(/function\s*(\w+)/)
         if (arr && arr.length === 2) {
-            return arr[1];
+            return arr[1]
         }
     }
-    return undefined;
+    return undefined
 }
 
 /**
@@ -128,15 +128,15 @@ export function getObjectClass(obj) {
  * @param gen
  */
 export function autoRunGeneratorFunc(gen) {
-    var g = gen();
+    var g = gen()
 
     function next(data) {
-        var result = g.next(data);
-        if (result.done) return result.value;
+        var result = g.next(data)
+        if (result.done) return result.value
         result.value.then(function (data) {
-            next(data);
-        });
+            next(data)
+        })
     }
 
-    next();
+    next()
 }

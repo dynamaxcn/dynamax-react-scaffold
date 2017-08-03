@@ -4,9 +4,9 @@
  */
 import 'whatwg-fetch'
 
-import {encodeURI} from './general-util';
-const authUtil = require('./auth-util');
-import {getCurrentHost} from './config-util';
+import {encodeURI} from './general-util'
+import AuthUtil from './auth-util'
+import {getCurrentHost} from './config-util'
 
 
 /**
@@ -29,26 +29,26 @@ function _parseJSON(response) {
  */
 export function request(url, body, method, host, withAuthToken = true) {
 
-    let _url = encodeURI(url);
-    let _method = method.toUpperCase();
-    let _host = host || getCurrentHost().target;
+    let _url = encodeURI(url)
+    let _method = method.toUpperCase()
+    let _host = host || getCurrentHost().target
 
     let headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8'
-    };
+    }
     if (withAuthToken) {
-        headers['Authorization'] = authUtil.getAuthorization(method, url, _host);
+        headers['Authorization'] = new AuthUtil().getAuthorization(method, url, _host)
     }
     let options = {
         method: _method,
         headers: headers
-    };
+    }
     if (!['GET', 'HEAD'].includes(_method) && body) {   //为除了GET和HEAD以外的方法配置body
-        options['body'] = JSON.stringify(body);
+        options['body'] = JSON.stringify(body)
     }
 
-    return doFetch(_url, options);
+    return doFetch(_url, options)
 
 }
 
@@ -56,15 +56,15 @@ export function request(url, body, method, host, withAuthToken = true) {
 export function doFetch(url, options) {
 
     return fetch(url, options).then(response => {
-        return _parseJSON(response).then(json => ({json, response}));
+        return _parseJSON(response).then(json => ({json, response}))
     }).then(({json, response}) => {
         if (!response.ok) {
-            return Promise.reject(json);
+            return Promise.reject(json)
         }
-        return json;
+        return json
     }).catch(e => {
-        throw e;
-    });
+        throw e
+    })
 
 }
 

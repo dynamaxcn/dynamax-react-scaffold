@@ -3,13 +3,13 @@
  * @param {number} expire  默认过期秒数
  */
 function Storage(prefix, expire) {
-    this.prefix = prefix || '';
+    this.prefix = prefix || ''
 
     if (expire === -1) {
-        this.driver = window.sessionStorage;
+        this.driver = window.sessionStorage
     } else {
-        this.driver = window.localStorage;
-        this.expire = expire || 0;
+        this.driver = window.localStorage
+        this.expire = expire || 0
     }
 }
 
@@ -18,38 +18,38 @@ Storage.prototype = {
     constructor: Storage,
 
     _key: function (key) {
-        return this.prefix + key;
+        return this.prefix + key
     },
 
     /**
      * 获取所有的本地存储数据对应的 key
      */
     keys: function () {
-        var keys = Object.keys(this.driver);
+        var keys = Object.keys(this.driver)
 
         if (this.prefix) {
-            var index = this.prefix.length;
+            var index = this.prefix.length
 
             return keys.map(function (key) {
-                return key.substring(index);
-            });
+                return key.substring(index)
+            })
         }
 
-        return keys;
+        return keys
     },
 
     /**
      * 移除某一项本地存储的数据
      */
     remove: function (key) {
-        this.driver.removeItem(this._key(key));
+        this.driver.removeItem(this._key(key))
     },
 
     /**
      * 清除所有本地存储的数据
      */
     clear: function () {
-        this.driver.clear();
+        this.driver.clear()
     },
 
     /**
@@ -58,39 +58,39 @@ Storage.prototype = {
     set: function (key, value, expire) {
         var data = {
             value: value
-        };
+        }
 
         if (typeof expire === 'undefined') {
-            expire = this.expire;
+            expire = this.expire
         }
 
         if (expire) {
-            data.expire = Date.now() + expire * 1000;
+            data.expire = Date.now() + expire * 1000
         }
 
-        this.driver.setItem(this._key(key), JSON.stringify(data));
+        this.driver.setItem(this._key(key), JSON.stringify(data))
     },
 
     /**
      * 提取本地存储的数据
      */
     get: function (key) {
-        var data = this.driver.getItem(this._key(key));
+        var data = this.driver.getItem(this._key(key))
 
         if (data) {
-            data = JSON.parse(data);
+            data = JSON.parse(data)
 
             if (data.expire) {
                 if (data.expire < Date.now()) {
-                    this.remove(key);
-                    data = null;
+                    this.remove(key)
+                    data = null
                 }
             }
         }
 
-        return data && data.value;
+        return data && data.value
     }
 
-};
+}
 // 默认一周有效期
-export default new Storage(null, 7 * 24 * 3600);
+export default new Storage(null, 7 * 24 * 3600)

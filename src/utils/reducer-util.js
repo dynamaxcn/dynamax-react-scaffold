@@ -10,7 +10,7 @@
  * @returns {*} 合并以后的对象
  */
 export function updateObject(oldObject, newValues) {
-    return Object.assign({}, oldObject, newValues);
+    return Object.assign({}, oldObject, newValues)
 }
 
 /**
@@ -24,11 +24,11 @@ export function updateObject(oldObject, newValues) {
 export function updateItemInArray(array, newValues, compareField) {
     const updatedItems = array.map(item => {
         if (item[compareField] !== newValues[compareField]) {
-            return item;
+            return item
         }
-        return updateObject(item, newValues);
+        return updateObject(item, newValues)
     });
-    return updatedItems;
+    return updatedItems
 }
 
 /**
@@ -38,7 +38,7 @@ export function updateItemInArray(array, newValues, compareField) {
  * @returns {*|Array|Array.<T>|string|Observable|WordArray}
  */
 export function addItemToArray(array, item) {
-    return array.concat(item);
+    return array.concat(item)
 }
 
 /**
@@ -48,9 +48,9 @@ export function addItemToArray(array, item) {
  * @returns {Array.<*>}
  */
 export function removeItemFromArray(array, index) {
-    let _array = Array.from(array);
-    _array.splice(index, 1);
-    return _array;
+    let _array = Array.from(array)
+    _array.splice(index, 1)
+    return _array
 }
 
 
@@ -61,9 +61,9 @@ export function removeItemFromArray(array, index) {
  * @returns {Array.<*>}
  */
 export function removeItemsFromArray(array, selectedsIndex) {
-    let _array = Array.from(array);
-    selectedsIndex.map(index =>{
-        _array.splice(index, 1);
+    let _array = Array.from(array)
+    selectedsIndex.map(index => {
+        _array.splice(index, 1)
     })
-    return _array;
+    return _array
 }
