@@ -2,7 +2,6 @@ import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import rootReducer from '../reducers'
-import api from './middleware/api'
 import apiRequester from './middleware/apiRequester'
 
 import {isProdEnv, isDevEnv} from '../utils/general-util'
@@ -13,7 +12,7 @@ import DevTools from '../containers/DevTools'
  */
 const storeEnhancer = () => {
     // 定义创建Store时所需要的中间件
-    const middleWares = [thunk, api, apiRequester]
+    const middleWares = [thunk, apiRequester]
     if (isDevEnv()) {
         middleWares.concat(createLogger())
     }
