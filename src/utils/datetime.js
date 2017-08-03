@@ -79,13 +79,13 @@ function parseDate(timestamp, pattern) {
         //   return Date.fromISO(timestamp.replace(/([+-]\d{2})(\d{2})/, '$1:$2'));
         // }
 
-        if (/^\d{4}(\-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d{3})?[+-]\d{4}$/.test(timestamp)) {
+        if (/^\d{4}(\\-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d{3})?[+-]\d{4}$/.test(timestamp)) {
             return Date.fromISO(timestamp.replace(/([+-]\d{2})(\d{2})/, '$1:$2'));
         }
-        if (/^\d{4}(\-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d{3})?[+-]\d{2}:\d{2}$/.test(timestamp)) {
+        if (/^\d{4}(\\-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d{3})?[+-]\d{2}:\d{2}$/.test(timestamp)) {
             return Date.fromISO(timestamp);
         }
-        if (/^\d{4}(\-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d{3})?[zZ]$/.test(timestamp)) {
+        if (/^\d{4}(\\-\d{2}){2}T\d{2}(:\d{2}){2}(\.\d{3})?[zZ]$/.test(timestamp)) {
             return Date.fromISO(timestamp.replace(/[zZ]/, '+00:00'));
         }
 
@@ -379,7 +379,7 @@ datetime.DAY_NAMES_ABBR = DAY_NAMES_ABBR;
         Date.fromISO = function (s) {
             var day;
             var tz;
-            var rx = /^(\d{4}\-\d\d\-\d\d([tT ][\d:\.]*)?)([zZ]|([+\-])(\d\d):(\d\d))?$/;
+            var rx = /^(\d{4}\\-\d\d\\-\d\d([tT ][\d:\\.]*)?)([zZ]|([+\\-])(\d\d):(\d\d))?$/;
             var p = rx.exec(s) || [];
             if (p[1]) {
                 day = p[1].split(/\D/);
@@ -415,4 +415,4 @@ datetime.DAY_NAMES_ABBR = DAY_NAMES_ABBR;
     }
 })()
 
-module.exports = datetime;
+export default datetime;

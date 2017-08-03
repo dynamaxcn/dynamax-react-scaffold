@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {browserHistory} from 'react-router'
-import Explore from '../Explore/index'
-import style from './index.css';
+
+//noinspection JSUnresolvedVariable
+import styles from './index.css';
 
 
 class App extends Component {
@@ -13,46 +13,23 @@ class App extends Component {
         children: PropTypes.node
     }
 
-    handleDismissClick = e => {
-        this.props.resetErrorMessage()
-        e.preventDefault()
-    }
-
-    handleChange = nextValue => {
-        browserHistory.push(`/${nextValue}`)
-    }
-
-    renderErrorMessage() {
-        const {errorMessage} = this.props
-        if (!errorMessage) {
-            return null
-        }
-
-        return (
-            <p style={{backgroundColor: '#e99', padding: 10}}>
-                <b>{errorMessage}</b>
-                {' '}
-                <button onClick={this.handleDismissClick}>
-                    Dismiss
-                </button>
-            </p>
-        )
-    }
-
     render() {
-        const {children, inputValue} = this.props
+        const {children} = this.props
         return (
             <div>
-                <div className={style['header']}>
+                <div className={styles['header']}>
                     <h1>City Gallery</h1>
                 </div>
-                <div className={style['section']}>
-                    <Explore value={inputValue} onChange={this.handleChange}/>
-                    <hr/>
-                    {this.renderErrorMessage()}
+                <div className={styles['nav']}>
+                    <li>菜单1</li>
+                    <li>菜单2</li>
+                    <li>菜单3</li>
+                    <li>菜单4</li>
+                </div>
+                <div className={styles['section']}>
                     {children}
                 </div>
-                <div className={style['footer']}>
+                <div className={styles['footer']}>
                     Copyright dynamaxcn.com
                 </div>
             </div>
