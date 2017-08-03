@@ -27,7 +27,7 @@ function _parseJSON(response) {
  * @param withAuthToken
  * @returns {*}
  */
-export function request(url, body, method, host, withAuthToken = true) {
+export function request(url, body, method, host, isWithAuthToken = true) {
 
     let _url = encodeURI(url)
     let _method = method.toUpperCase()
@@ -37,7 +37,7 @@ export function request(url, body, method, host, withAuthToken = true) {
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8'
     }
-    if (withAuthToken) {
+    if (isWithAuthToken) {
         headers['Authorization'] = new AuthUtil().getAuthorization(method, url, _host)
     }
     let options = {
