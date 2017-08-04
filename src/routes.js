@@ -1,15 +1,15 @@
 import React from 'react'
 import {browserHistory, Router, Route} from 'react-router'
 import {syncHistoryWithStore} from 'react-router-redux'
-import AuthUtil from './utils/auth-util';
+// import AuthUtil from './utils/auth-util'
 
 import App from './containers/App'
 import Login from './containers/Login'
 
 function authorize(nextState, replaceState, callback) {
-    if (!new AuthUtil().isLogin()) {  //如果没有登录，那么跳转到登录页面
-        replaceState('/login');
-    }
+    // if (!new AuthUtil().isLogin()) {  //如果没有登录，那么跳转到登录页面
+    //     replaceState('/login');
+    // }
     callback();
 }
 
