@@ -4,6 +4,7 @@ import {syncHistoryWithStore} from 'react-router-redux'
 
 import App from './containers/App'
 import Login from './containers/Login'
+import Todo from './containers/Todo'
 
 function authorize(nextState, replaceState, callback) {
     callback();
@@ -15,6 +16,7 @@ export default (store) => {
         <Router history={history}>
             <Route path="/login" component={Login}/>
             <Route path="/" component={App} onEnter={authorize}>
+                <IndexRoute component={Todo}/>
             </Route>
         </Router>
     )
