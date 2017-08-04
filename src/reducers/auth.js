@@ -28,6 +28,10 @@ function auth(state = initialState, action) {
         case LOGIN_SUCCESS:
             let user = action.payload['userInfo']
             let token = action.payload['tokens']
+
+            console.log(user)
+            console.log(token)
+
             return state.set('loading', false).set('error', null).set('success', true).set('user', user).set('token', token)
         case LOGIN_ERROR:
             return state.set('loading', false).set('error', action.error).set('success', false).set('user', {}).set('token', {})
@@ -39,4 +43,5 @@ function auth(state = initialState, action) {
             return state
     }
 }
+
 export default auth

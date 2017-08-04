@@ -4,7 +4,8 @@ import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
     routing,
-    auth
+    auth,
+
 })
 
 export default rootReducer

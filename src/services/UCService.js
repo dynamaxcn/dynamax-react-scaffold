@@ -6,8 +6,8 @@ class UCService extends BaseService {
     login(user) {
         return Promise.resolve(user).then(res => {
             return {
-                token: 'XXXX-XXXX-XXXX-XXXX',
-                user: res
+                tokens: 'XXXX-XXXX-XXXX-XXXX',
+                userInfo: res
             }
         })
     }
