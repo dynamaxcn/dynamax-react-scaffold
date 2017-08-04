@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/action-types'
-import {browserHistory} from 'react-router'
+import {hashHistory} from 'react-router'
 import UCService from '../services/uc-service'
 
 export const login = (user) => {
@@ -13,7 +13,7 @@ export const login = (user) => {
                 type: ActionTypes.LOGIN_SUCCESS,
                 payload: res
             })
-            dispatch(browserHistory.push('/'))
+            dispatch(hashHistory.push('/'))
         }).catch(error => {
             dispatch({
                 type: ActionTypes.LOGIN_ERROR,
