@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/action-types'
 import {browserHistory} from 'react-router'
-import UCService from '../services/UCService'
+import UCService from '../services/uc-service'
 
 export const login = (user) => {
 

@@ -1,4 +1,4 @@
-import BaseService from './BaseService';
+import BaseService from './base-service';
 
 class UCService extends BaseService {
 

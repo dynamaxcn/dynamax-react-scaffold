@@ -3,7 +3,7 @@
  * 使用样例：
  *function exampleAction() {
  *   return {
- *       [REQUEST_API]: {
+ *       [REQUEST]: {
  *           types: ['ON_REQUEST', 'ON_SUCCESS', 'ON_FAILURE'],
  *           service: () => { return new Promise.resolve(168) },
  *           onSuccess: (response) => { return response },
@@ -15,11 +15,11 @@
  * 使用redux-thunk中间件时候，配合该中间件使用
  * Created by guanzhenxing on 2017-01-25.
  */
-export const REQUEST_API = Symbol('Request API');
+export const REQUEST = Symbol('request');
 
 function createAPIRequester() {
     return store => next => action => {
-        const callAPI = action[REQUEST_API];
+        const callAPI = action[REQUEST];
         if (typeof callAPI === 'undefined') {
             return next(action)
         }
@@ -38,7 +38,7 @@ function createAPIRequester() {
 
         const actionWith = data => {
             const finalAction = Object.assign({}, action, data);
-            delete finalAction[REQUEST_API];
+            delete finalAction[REQUEST];
             return finalAction
         };
 
